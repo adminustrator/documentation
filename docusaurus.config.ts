@@ -5,7 +5,7 @@ import 'dotenv/config'
 
 const config: Config = {
   title: 'OneSmile Documentation',
-  tagline: 'We are cool',
+  tagline: 'from Tech Team to the Folks',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -59,9 +59,9 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'My Site',
+      title: 'OneSmile',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'OneSmile',
         src: 'img/logo.svg',
       },
       items: [
@@ -73,7 +73,7 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/OneSmileTech/dokumentasi',
           label: 'GitHub',
           position: 'right',
         },
@@ -117,7 +117,7 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/OneSmileTech/dokumentasi',
             },
           ],
         },
