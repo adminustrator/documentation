@@ -127,6 +127,7 @@ description: the details about integer columns
 | 8     | Cancel Approved / In Process        |
 | 9     | In Proccess / Completed             |
 | 10    | Telah Lewat                         |
+| 13    | Telah Lewat                         |
 
 ## facility_sub_services
 
