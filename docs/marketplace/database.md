@@ -5,6 +5,12 @@ description: Arsitektur basis data
 
 # Database
 
+:::tip[Penyusun]
+
+- Reza Nurfachmi :: Fullstack Developer Senior Associate - Operational Technology
+
+:::
+
 ## Tabel `marketplace_users`
 
 Deskripsi tabelnya di sini.

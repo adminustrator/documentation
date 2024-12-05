@@ -5,6 +5,12 @@ description: Introduction about the database itself
 
 # Database
 
+:::tip[Penyusun]
+
+- Reza Nurfachmi :: Fullstack Developer Senior Associate - Operational Technology
+
+:::
+
 ## Database Engine
 
 **PostgreSQL**

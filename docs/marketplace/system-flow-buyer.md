@@ -5,6 +5,12 @@ description: System Flow atau alur sistem pada buyer marketplace
 
 # System Flow - Buyer
 
+:::tip[Penyusun]
+
+- Reza Nurfachmi :: Fullstack Developer Senior Associate - Operational Technology
+
+:::
+
 ## Keterangan kolom
 
 | Tipe           | Deskripsi                                                              |

@@ -5,6 +5,12 @@ description: the details about integer columns
 
 # Integer Columns
 
+:::tip[Penyusun]
+
+- Reza Nurfachmi :: Fullstack Developer Senior Associate - Operational Technology
+
+:::
+
 ## appointment_member
 
 ### status

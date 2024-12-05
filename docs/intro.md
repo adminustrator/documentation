@@ -4,6 +4,12 @@ sidebar_position: 1
 
 # Tutorial Intro
 
+:::tip[Penyusun]
+
+- Reza Nurfachmi :: Fullstack Developer Senior Associate - Operational Technology
+
+:::
+
 Let's discover **Docusaurus in less than 5 minutes**.
 
 ## Getting Started
