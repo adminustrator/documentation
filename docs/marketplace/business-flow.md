@@ -1,9 +1,16 @@
 ---
 sidebar_position: 3
 description: Business Flow atau alur bisnis pada marketplace
+authors: [reza]
 ---
 
 # Business Flow
+
+:::tip[Penyusun]
+
+- Reza Nurfachmi :: Fullstack Developer Senior Associate - Operational Technology
+
+:::
 
 ## Seller Flow
 

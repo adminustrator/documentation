@@ -73,7 +73,7 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/OneSmileTech/dokumentasi',
+          href: 'https://github.com/adminustrator/documentation',
           label: 'GitHub',
           position: 'right',
         },
@@ -117,7 +117,7 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/OneSmileTech/dokumentasi',
+              href: 'https://github.com/adminustrator/documentation',
             },
           ],
         },
