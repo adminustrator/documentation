@@ -1,9 +1,9 @@
 ---
 sidebar_position: 4
-description: System Flow atau alur sistem pada marketplace
+description: System Flow atau alur sistem pada seller marketplace
 ---
 
-# System Flow
+# System Flow - Seller
 
 ## Keterangan kolom
 
@@ -108,3 +108,4 @@ Alur datanya adalah sebagai berikut:
    - updated_by: session text
    - created_at: generated text
    - updated_at: generated text
+
