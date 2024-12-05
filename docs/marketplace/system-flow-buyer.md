@@ -219,7 +219,7 @@ Yang terjadi setelah buyer menginput review dan rating pada belanjaannya.
     Kolom yang terupdate adalah:
 
     - rating_total: generated text : total rating yang diberikan (increment++)
-    - rating: generated text : rata-rata rating berdasarkan kolom marketplace_store_id
+    - rating: generated text : rata-rata rating berdasarkan kolom marketplace_reviews.marketplace_store_id
 
 1. `marketplace_products`
 
@@ -228,7 +228,7 @@ Yang terjadi setelah buyer menginput review dan rating pada belanjaannya.
     Kolom yang terupdate adalah:
 
     - rating_total: generated text : total rating yang diberikan (increment++)
-    - rating: generated text : rata-rata rating berdasarkan kolom marketplace_store_id
+    - rating: generated text : rata-rata rating berdasarkan kolom marketplace_reviews.marketplace_store_id
 
 1. `marketplace_product_variants`
 
@@ -237,4 +237,4 @@ Yang terjadi setelah buyer menginput review dan rating pada belanjaannya.
     Kolom yang terupdate adalah:
 
     - rating_total: generated text : total rating yang diberikan (increment++)
-    - rating: generated text : rata-rata rating berdasarkan kolom marketplace_store_id
+    - rating: generated text : rata-rata rating berdasarkan kolom marketplace_reviews.marketplace_store_id
