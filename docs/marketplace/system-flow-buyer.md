@@ -82,8 +82,8 @@ Yang terjadi pada saat user melakukan checkout dari halaman cart.
    - mp_id: free text : metode pembayaran yang dipilih
    - billing*code: generated text : \*\*(slug-store)-(YmdHis-4)*(random_chars)\*\*
    - order_invoice: generated text : **(MARKETPLACE)/(unix_timestamp)/(first_8_chars_of_store_id)**
-   - order_discount: data text : total harga diskon (contoh: 0)
-   - order_voucher_code: data text : kode voucher
+   - order_discount: data text : total harga diskon (contoh: 0), _jika ada voucher_
+   - order_voucher_code: data text : kode voucher, _jika ada voucher_
    - order_base_price: data text : harga sebelum diskon (contoh: 10.000)
    - admin_fee: data text : onesmile fee (contoh: 5.000)
 
@@ -99,7 +99,7 @@ Yang terjadi pada saat user melakukan checkout dari halaman cart.
    - address: generated text : string dari data `marketplace_address_id`
    - total: generated text : sum dari `marketplace_order_items.subtotal`
    - delivery_fee: data text
-   - discount: generated text
+   - discount: generated text : _jika ada voucher_
    - pre_tax_price: generated text : total - discount
    - onesmile_percentage_fee: data text
    - onesmile_fee: generated text : pre_tax_price \* (onesmile_percentage_fee / 100)
