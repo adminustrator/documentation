@@ -186,3 +186,19 @@ Deskripsi tabelnya di sini.
 | kolom | tipe data | deskripsi |
 | :---: | :-------: | --------- |
 |  N/A  |    N/A    | N/A       |
+
+## Tabel `marketplace_transactions`
+
+Deskripsi tabelnya di sini.
+
+| kolom | tipe data | deskripsi |
+| :---: | :-------: | --------- |
+|  N/A  |    N/A    | N/A       |
+
+## Tabel `marketplace_withdrawals`
+
+Deskripsi tabelnya di sini.
+
+| kolom | tipe data | deskripsi |
+| :---: | :-------: | --------- |
+|  N/A  |    N/A    | N/A       |

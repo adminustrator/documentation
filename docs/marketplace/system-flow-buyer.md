@@ -82,8 +82,8 @@ Yang terjadi pada saat user melakukan checkout dari halaman cart.
    - mp_id: free text : metode pembayaran yang dipilih
    - billing*code: generated text : \*\*(slug-store)-(YmdHis-4)*(random_chars)\*\*
    - order_invoice: generated text : **(MARKETPLACE)/(unix_timestamp)/(first_8_chars_of_store_id)**
-   - order_discount: data text : total harga diskon (contoh: 0), _jika ada voucher_
-   - order_voucher_code: data text : kode voucher, _jika ada voucher_
+   - order*discount: data text : total harga diskon (contoh: 0), \_jika ada voucher*
+   - order*voucher_code: data text : kode voucher, \_jika ada voucher*
    - order_base_price: data text : harga sebelum diskon (contoh: 10.000)
    - admin_fee: data text : onesmile fee (contoh: 5.000)
 
@@ -133,6 +133,22 @@ Yang terjadi pada saat user melakukan checkout dari halaman cart.
 1. `marketplace_carts`
 
    Menghapus data (hard delete) cart yang terpilih saat melakukan checkout.
+
+1. `marketplace_transactions`
+
+   Kolom yang terisi adalah:
+
+   - id: generated text
+   - marketplace_store_id: data text
+   - type: data text
+   - amount: data text
+   - marketplace_order_id: data text
+   - description: generated text
+   - status: generated text : (pending)
+   - created_by: session text
+   - updated_by: session text
+   - created_at: generated text
+   - updated_at: generated text
 
 ## Webhook saat Invoicing
 
@@ -197,6 +213,12 @@ Yang tejadi setelah buyer telah membayar dan sistem menerima webhook dari Paymen
 
    - sold_qty: generated text : total barang yang terjual (increment)
 
+1. `marketplace_transactions`
+
+   Kolom yang terupdate adalah:
+
+   - status: generated text : (completed)
+
 ## Review dan Rating
 
 Yang terjadi setelah buyer menginput review dan rating pada belanjaannya.
@@ -222,25 +244,25 @@ Yang terjadi setelah buyer menginput review dan rating pada belanjaannya.
 
 1. `marketplace_stores`
 
-    Kolom yang terupdate adalah:
+   Kolom yang terupdate adalah:
 
-    - rating_total: generated text : total rating yang diberikan (increment++)
-    - rating: generated text : rata-rata rating berdasarkan kolom marketplace_reviews.marketplace_store_id
+   - rating_total: generated text : total rating yang diberikan (increment++)
+   - rating: generated text : rata-rata rating berdasarkan kolom marketplace_reviews.marketplace_store_id
 
 1. `marketplace_products`
 
-    Jika ratingnya pada level produk, maka ini terjadi pula.
+   Jika ratingnya pada level produk, maka ini terjadi pula.
 
-    Kolom yang terupdate adalah:
+   Kolom yang terupdate adalah:
 
-    - rating_total: generated text : total rating yang diberikan (increment++)
-    - rating: generated text : rata-rata rating berdasarkan kolom marketplace_reviews.marketplace_store_id
+   - rating_total: generated text : total rating yang diberikan (increment++)
+   - rating: generated text : rata-rata rating berdasarkan kolom marketplace_reviews.marketplace_store_id
 
 1. `marketplace_product_variants`
 
-    Jika ratingnya pada level produk, maka ini terjadi pula.
+   Jika ratingnya pada level produk, maka ini terjadi pula.
 
-    Kolom yang terupdate adalah:
+   Kolom yang terupdate adalah:
 
-    - rating_total: generated text : total rating yang diberikan (increment++)
-    - rating: generated text : rata-rata rating berdasarkan kolom marketplace_reviews.marketplace_store_id
+   - rating_total: generated text : total rating yang diberikan (increment++)
+   - rating: generated text : rata-rata rating berdasarkan kolom marketplace_reviews.marketplace_store_id
