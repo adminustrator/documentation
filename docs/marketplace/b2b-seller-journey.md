@@ -5,6 +5,12 @@ description: Tutorial journey sebagai seller B2B
 
 # Seller B2B Journey
 
+:::tip[Penyusun]
+
+- Reza Nurfachmi :: Fullstack Developer Senior Associate - Operational Technology
+
+:::
+
 ## Tambahkan via CMS
 
 Login sebagai akun administrator OSA Panel.
