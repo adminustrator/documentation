@@ -162,6 +162,37 @@ description: the details about integer columns
 | 0     | UNPUBLISHED |
 | 1     | PUBLISHED   |
 
+## general_message_room
+
+### type
+
+| Value | Description   |
+| ----- | ------------- |
+| 1     | Personal      |
+| 2     | Marketplace   |
+| 5     | CS            |
+| 6     | Not used      |
+| 7     | Washteria (?) |
+
+### status
+
+| Value | Description |
+| ----- | ----------- |
+
+## general_message
+
+### status
+
+| Value | Description |
+| ----- | ----------- |
+| 1     | Unread      |
+| 2     | Read        |
+
+### role
+
+| Value | Description |
+| ----- | ----------- |
+
 ## kategori
 
 ### kategori_status
