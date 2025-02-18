@@ -25,9 +25,9 @@ POST https://api.onesmile.digital/api-v2/silvia/chat
 
 ## Body
 
-| Body Parameter | Type   | Description                    |
-| -------------- | ------ | ------------------------------ |
-| message        | String | Pesan untuk Silvia dari member |
+| Body Parameter | Type   | Description                    | Required |
+| -------------- | ------ | ------------------------------ | :------: |
+| message        | String | Pesan untuk Silvia dari member |    ✅    |
 
 ## Example responses
 
