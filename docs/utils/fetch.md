@@ -31,7 +31,7 @@ POST https://kube-prd.az-api.onesmile.digital/homepage/api/v2/utils/fetch
 
 ## Example responses
 
-Status: `200`
+### Status: `200`
 
 ```json
 {
@@ -44,7 +44,7 @@ Status: `200`
 }
 ```
 
-Status: `400`
+### Status: `400`
 
 Error validasi
 
@@ -69,7 +69,7 @@ Error validasi
 }
 ```
 
-Status: `404`
+### Status: `404`
 
 Error path
 

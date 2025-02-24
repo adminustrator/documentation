@@ -33,7 +33,7 @@ POST https://kube-prd.az-api.onesmile.digital/homepage/api/v2/utils/upload
 
 ## Example responses
 
-Status: `200`
+### Status: `200`
 
 ```json
 {
@@ -46,7 +46,7 @@ Status: `200`
 }
 ```
 
-Status: `400`
+### Status: `400`
 
 Error validasi
 
