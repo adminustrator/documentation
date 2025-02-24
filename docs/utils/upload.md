@@ -41,7 +41,7 @@ Status: `200`
   "msg": "Sukses",
   "data": {
     "path": "testing/59-upload_file_72d178fc3800717b.pdf",
-    "url": "https://onesmilestoragedev.blob.core.windows.net/onesmile/testing/59-upload_file_72d178fc3800717b.pdf"
+    "url": "https://onesmilestorageprod.blob.core.windows.net/onesmile/testing/59-upload_file_72d178fc3800717b.pdf"
   }
 }
 ```
