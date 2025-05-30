@@ -269,6 +269,19 @@ description: the details about integer columns
 | 1     | Resident     |
 | 2     | Merchant     |
 
+## complaint_member_item
+
+### status
+
+| Value | Description |
+| ----- | ----------- |
+| 0     | OPEN        |
+| 1     | IN PROCESS  |
+| 2     | FINISHED    |
+| 3     | CLARIFIED   |
+| 4     | CANCELLED   |
+| 5     | COMPLETED   |
+
 ## member_contractor
 
 ### status
