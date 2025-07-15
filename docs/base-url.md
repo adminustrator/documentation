@@ -10,6 +10,28 @@ sidebar_position: 2
 
 :::
 
+## ACA
+
+| Service            | URL                                                      |
+| ------------------ | -------------------------------------------------------- |
+| Article            | https://aca-prd.az-api.onesmile.digital/article          |
+| BSD Link           | https://aca-prd.az-api.onesmile.digital/bsd-link         |
+| Chat External      | https://aca-prd.az-api.onesmile.digital/chat-external    |
+| Club House         | https://aca-prd.az-api.onesmile.digital/club-house       |
+| Customer Care      | https://aca-prd.az-api.onesmile.digital/customer-care    |
+| Event              | https://aca-prd.az-api.onesmile.digital/event            |
+| Facility Booking   | https://aca-prd.az-api.onesmile.digital/facility         |
+| General API        | https://aca-prd.az-api.onesmile.digital/general-api      |
+| Home & Menu        | https://aca-prd.az-api.onesmile.digital/homepage         |
+| IPL                | -                                                        |
+| Job Portal         | https://aca-prd.az-api.onesmile.digital/job-portal       |
+| Login & Register   | https://aca-prd.az-api.onesmile.digital/login-register   |
+| Loyalty            | https://aca-prd.az-api.onesmile.digital/loyalty          |
+| Market (Washteria) | -                                                        |
+| Marketplace        | https://aca-prd.az-api.onesmile.digital/marketplace      |
+| Payment            | https://aca-prd.az-api.onesmile.digital/payment-xendit   |
+| Resident Service   | https://aca-prd.az-api.onesmile.digital/resident-service |
+
 ## 2025.01
 
 | Service            | URL                                                           |
