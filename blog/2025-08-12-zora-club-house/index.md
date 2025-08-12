@@ -9,6 +9,12 @@ tags: [announcement, important]
 
 Secara singkat, ada beberapa _enhancement_ penting pada club house untuk The ZORA, antara lain:
 
+1. Menampilkan Quota
+2. Pemilihan Jenis Lapangan
+3. Kitchen Berbayar dan Jumlah Tamu
+
+<!-- truncate -->
+
 ## Menampilkan Quota
 
 Menampilkan `quota` pada servis **Sauna**.
