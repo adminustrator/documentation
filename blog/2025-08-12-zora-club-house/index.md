@@ -284,8 +284,11 @@ Fitur ini bisa saja berlaku untuk Club House selain Zora karena bisa atau tidakn
     "cancel_policy": [],
     "is_cancel": true,
     "club_house_description": "",
-    // highlight-next-line
+    // highlight-start
     "can_reschedule": true,
+    "service_id": 88,
+    "location_id": 113,
+    // highlight-end
     "order_id": null,
     "order_price": 0,
     "order_base_price": 0,
@@ -294,4 +297,17 @@ Fitur ini bisa saja berlaku untuk Club House selain Zora karena bisa atau tidakn
 }
 ```
 
-Selanjutnya
+Selanjutnya untuk melakukan reschedule dapat dilakukan dengan melihat detail booking pada objek-objek berikut:
+
+- `can_reschedule`
+- `service_id`
+- `location_id`
+
+Kemudian bisa melakukan ulang `/get-clubhouse-schedule-date` lalu `/get-clubhouse-schedule-time` diakhiri dengan melakukan hit ke endpoint `/reschedule-appointment` dengan *body* sebagai berikut:
+
+```json
+{
+  "club_house_id": 163419,
+  "schedule_id": 254298
+}
+```
