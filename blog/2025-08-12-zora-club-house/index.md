@@ -29,7 +29,7 @@ Hal tersebut bisa didapatkan dari endpoint `/get-clubhouse-schedule-time` dengan
 
 Berikut contoh _response_-nya:
 
-```
+```json
 {
   "success": true,
   "msg": "Success",
@@ -80,7 +80,7 @@ Hal tersebut bisa didapatkan dari endpoint `/get-clubhouse-detail` dengan objek-
 
 Berikut contoh _response_-nya:
 
-```
+```json
 {
   "success": true,
   "msg": "Success",
@@ -117,7 +117,7 @@ Berikut contoh _response_-nya:
 
 Lalu saat melakukan `/make-clubhouse-appointment`, pastikan data dari objek `club_house_description` adalah salah satu dari jenis olahraga tersebut, contohnya seperti ini:
 
-```
+```json
 {
   "service_id": 85,
   "location_id": 129,
@@ -132,7 +132,7 @@ Lalu saat melakukan `/make-clubhouse-appointment`, pastikan data dari objek `clu
 
 Jika tidak sesuai, maka _response_-nya sebagai berikut:
 
-```
+```json
 {
   "success": false,
   "msg": "Servis terpilih tidak tersedia",
@@ -158,7 +158,7 @@ Hal tersebut bisa didapatkan dari endpoint `/get-clubhouse-schedule-time` dengan
 
 Berikut contoh _response_-nya:
 
-```
+```json
 {
   "success": true,
   "msg": "Success",
@@ -186,7 +186,7 @@ Berikut contoh _response_-nya:
 
 Lalu saat melakukan `/make-clubhouse-appointment`, pastikan data dari objek `club_house_description` diisi dengan jumlah tamu tersebut, contohnya seperti ini:
 
-```
+```json
 {
   "service_id": 85,
   "location_id": 129,
@@ -206,7 +206,7 @@ Sekedar info bahwa penulisan kapasitas bisa beragam bentuknya, tunggal atau jama
 
 Jika berhasil, maka segera ambil nilai dari objek `order_id` dari _response_-nya:
 
-```
+```json
 {
   "success": true,
   "msg": "Terima Kasih telah membuat Janji",
@@ -230,7 +230,7 @@ Jika berhasil, maka segera ambil nilai dari objek `order_id` dari _response_-nya
 
 Lalu lanjutkan dengan menampilkan metode pembayaran dengan merujuk ke _base url_ pembayaran dengan endpoint `/payment-channel` dengan `body` sebagai berikut:
 
-```
+```json
 {
   "category": "CLUBHOUSE"
 }
@@ -238,7 +238,7 @@ Lalu lanjutkan dengan menampilkan metode pembayaran dengan merujuk ke _base url_
 
 Kemudian diakhiri dengan **checkout** masih merujuk ke _base url_ pembayaran dengan endpoint `/payment-checkout` dengan `body` sebagai berikut:
 
-```
+```json
 {
   "order_id": xxx,
   "mp_id": yy
@@ -249,7 +249,7 @@ Selanjutnya kembali lagi ke _base url_ club-house.
 
 Untuk memeriksa status pembayaran, bisa ke endpoint `/get-payment-status` dengan `body` sebagai berikut:
 
-```
+```json
 {
   "order_id": 416
 }
@@ -263,7 +263,7 @@ Customer dapat melakukan reschedule.
 
 Fitur ini bisa saja berlaku untuk Club House selain Zora karena bisa atau tidaknya sebuah appointment melakukan reschedule tergantung dari value `/get-my-booking-detail` pada objek `can_reschedule`. Jika bernilai `true`, maka bisa melakukan reschedule dengan menampilkan tombol pada detail tiketnya.
 
-```
+```json
 {
   "success": true,
   "msg": "Success",
