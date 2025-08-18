@@ -42,9 +42,11 @@ Berikut contoh _response_-nya:
         "time": "19:00 - 19:45",
         "hours": 0,
         "is_resident": 1,
+        // highlight-start
         "quota": 5,
         "quota_label": "Kuota",
         "show_quota": true,
+        // highlight-end
         "price": 0,
         "is_active": true
       }
@@ -99,6 +101,7 @@ Berikut contoh _response_-nya:
     "facility_rules": "<p></p><p>1. Booking fasilitas melalui aplikasi OneSmile</p><p>2. Membawa peralatan masing-masing</p><p>3. Tidak membuang sampah apapun di lapangan\r\n\r\n</p><p></p>",
     "facility": [],
     "cancel_policy": [],
+    // highlight-start
     "services": {
       "label": "Pilih Olahraga",
       "options": [
@@ -107,6 +110,7 @@ Berikut contoh _response_-nya:
       ],
       "widgets": []
     }
+    // highlight-end
   }
 }
 ```
@@ -120,6 +124,7 @@ Lalu saat melakukan `/make-clubhouse-appointment`, pastikan data dari objek `clu
   "schedule_id": [
     354700
   ],
+  // highlight-next-line
   "club_house_description": "Basket",
   "additional_form": []
 }
@@ -169,6 +174,7 @@ Berikut contoh _response_-nya:
         "quota": 1,
         "quota_label": "",
         "show_quota": false,
+        // highlight-next-line
         "price": 50000,
         "is_active": true
       }
@@ -187,6 +193,7 @@ Lalu saat melakukan `/make-clubhouse-appointment`, pastikan data dari objek `clu
   "schedule_id": [
     354700
   ],
+  // highlight-next-line
   "club_house_description": "10 Dewasa",
   "additional_form": []
 }
@@ -214,6 +221,7 @@ Jika berhasil, maka segera ambil nilai dari objek `order_id` dari _response_-nya
       "time": "10:00 - 11:00",
       "total_customer": 10,
       "additional_form": [],
+      // highlight-next-line
       "order_id": 419
     }
   ]
@@ -246,3 +254,44 @@ Untuk memeriksa status pembayaran, bisa ke endpoint `/get-payment-status` dengan
   "order_id": 416
 }
 ```
+
+## Reschedule Jadwal
+
+Customer dapat melakukan reschedule.
+
+![Reschedule Jadwal](./004.png)
+
+Fitur ini bisa saja berlaku untuk Club House selain Zora karena bisa atau tidaknya sebuah appointment melakukan reschedule tergantung dari value `/get-my-booking-detail` pada objek `can_reschedule`. Jika bernilai `true`, maka bisa melakukan reschedule dengan menampilkan tombol pada detail tiketnya.
+
+```
+{
+  "success": true,
+  "msg": "Success",
+  "data": {
+    "club_house_id": 163419,
+    "club_house_name": "The ZORA - Swimming Pool",
+    "club_house_image": "https://az-api-dev.onesmile.digital/img/club_house_page/XSSrw00C6sNskLjFhEv2oWamKCOm900re1RifqQl.png",
+    "club_house_date": "Rabu, 20 Agustus 2025",
+    "club_house_time": "07:00-08:00",
+    "total_hours": "1 jam",
+    "total_guest": 1,
+    "code_boking": "CH254275-82D2Q",
+    "club_house_qr": "FyxglDNzodh8ZsJKBMhg9rry3Ldm34agdCgZRZveoEEGjhp2fqpiy9q414LbpBRBoJQcJOoWLs5BpecghQ93NqHQOQezreJxMiaOTLT8p7GExAa0GV1pIGgbMAoalPs7WMLiWEEY0/NB2sprW7LGOm/vbhH1bh4tJki96D2OVKA=",
+    "order_time": "2025-08-18T02:56:16.000Z",
+    "payment_details": null,
+    "status": 1,
+    "status_name": "Aktif",
+    "cancel_policy": [],
+    "is_cancel": true,
+    "club_house_description": "",
+    // highlight-next-line
+    "can_reschedule": true,
+    "order_id": null,
+    "order_price": 0,
+    "order_base_price": 0,
+    "admin_fee": 0
+  }
+}
+```
+
+Selanjutnya
