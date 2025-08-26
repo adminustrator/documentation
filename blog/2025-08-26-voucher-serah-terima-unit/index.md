@@ -1,5 +1,5 @@
 ---
-slug: evoucher-serah-terima-unit
+slug: user-journey-evoucher-serah-terima-unit
 title: User Journey e-Voucher Serah Terima Unit
 authors: [reza]
 tags: [announcement, important]
