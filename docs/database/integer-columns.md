@@ -90,6 +90,9 @@ description: the details about integer columns
 | 17    | CANCEL BY SYSTEM / NOT PRESENT |
 | 18    | FINISHED BY ATTENDANCE         |
 | 19    | CONFIRMATION BY ATTENDANCE     |
+| 20    | MENUNGGU PEMBAYARAN            |
+| 21    | MENUNGGU KONFIRMASI            |
+| 22    | KEDALUWARSA                    |
 
 ### membership_type
 
