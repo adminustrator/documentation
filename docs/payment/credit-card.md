@@ -117,29 +117,3 @@ Kemudian melakukan request kepada provider dan mendapatkan response untuk update
 - payer_authentication_url
 
 Juga menyimpan request dan response-nya pada tabel `member_card_logs`.
-
-## Transaksi API
-
-Proses akan dilakukan dalam repositori `Onesmile-Payment-Xendit`. Dokumentasi menyusul.
-
-### Payload Request
-
-```json
-{     
-    "card_data": {
-        "account_number": "4456530000001096",        
-        "exp_month": "12",        
-        "exp_year": "2029",
-        "card_holder_first_name": "John",
-        "card_holder_last_name": "Doe",
-        "card_holder_email": "johndoe@gmai.com",
-        "card_holder_phone_number": "628212223242526"
-    },
-    "card_cvn": "123",
-    "is_multiple_use": true,
-    "should_authenticate": true,
-    "currency": "IDR"
-}
-```
-
-_Menyusul..._
