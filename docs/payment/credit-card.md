@@ -32,28 +32,27 @@ Ada beberapa hal yang diisi oleh customer saat menginput data kartunya, antara l
 
 Adapun data di atas akan disimpan pada tabel `member_cards` dengan detail sebagai berikut:
 
-| Kolom                    | Tipe Data | Panjang | Key     | Contoh                                     |
-|--------------------------|-----------|---------|---------|--------------------------------------------|
-| id                       | bigint    | -       | primary | _1, 2, ... n_                              |
-| member_username *        | string   | 50      | index   | _628xxxx_                                  |
-| member_id *              | bigint    | -       | -       | _1, 2, ... n_                              |
-| provider *               | string | 50 | - | _XENDIT_ \| _RINTIS_, etc                  |
-| token_id                 | string    | 255     | -       | _5fcd8deb93e9a90020d8fd2d_                 |
-| authentication_id        | string    | 255     | -       | _5fcd8deb93e9a90020d8fd2e_                 |
-| status                   | string    | 20      | index   | _IN_REVIEW_ \| _VERIFIED_ \| _FAILED_, etc |
-| first_name *             | string   | 100     | -       | _John_                                     |
-| last_name *              | string   | 100     | -       | _Doe_                                      |
-| email *                  | string   | 255     | -       | _johndoe@gmail.com_                        |
-| phone_number *           | string   | 25      | -       | _628xxxx_                                  |
-| account_number *         | string      | 20      | -       | _4456530000001096_                         |
-| masked_account_number    | string   | 20      | -       | _445653XXXXXX1096_                         |
-| exp_month *              | tinyint   | 2       | -       | _01 s.d. 12_                               |
-| exp_year *               | year      | -       | -       | _2029_                                     |
-| currency *               | string   | 5       | -       | _IDR_                                      |
+| Kolom                  | Tipe Data | Panjang | Key     | Contoh                                     |
+|------------------------|-----------|---------|---------|--------------------------------------------|
+| id                     | bigint    | -       | primary | _1, 2, ... n_                              |
+| member_username *      | string    | 50      | index   | _628xxxx_                                  |
+| member_id *            | bigint    | -       | -       | _1, 2, ... n_                              |
+| provider *             | string    | 50      | - | _XENDIT_ \| _RINTIS_, etc                  |
+| token_id               | text      | -       | -       | _(encrypted)_                              |
+| authentication_id      | text      | -       | -       | _(encrypted)_                              |
+| status                 | string    | 20      | index   | _IN_REVIEW_ \| _VERIFIED_ \| _FAILED_, etc |
+| first_name *           | string    | 100     | -       | _John_                                     |
+| last_name *            | string    | 100     | -       | _Doe_                                      |
+| email *                | string    | 255     | -       | _johndoe@gmail.com_                        |
+| phone_number *         | string    | 25      | -       | _628xxxx_                                  |
+| account_number         | string    | 20      | -       | _445653XXXXXX1096_ ***(masked)***          |
+| exp_month *            | tinyint   | 2       | -       | _01 s.d. 12_                               |
+| exp_year *             | year      | -       | -       | _2029_                                     |
+| currency *             | string    | 5       | -       | _IDR_                                      |
 | payer_authentication_url | text      | -       | -       | _https://..._                              |
-| created_at               | timestamp | -       | -       | _2025-02-17 16:06:07.000_                  |
-| updated_at               | timestamp | -       | -       | _2025-02-17 16:06:07.000_                  |
-| deleted_at               | timestamp | -       | -       | _2025-02-17 16:06:07.000_                  |
+| created_at             | timestamp | -       | -       | _2025-02-17 16:06:07.000_                  |
+| updated_at             | timestamp | -       | -       | _2025-02-17 16:06:07.000_                  |
+| deleted_at             | timestamp | -       | -       | _2025-02-17 16:06:07.000_                  |
 
 Untuk kolom yang ada tanda asterisk (*) artinya itu tidak nullable.
 
@@ -104,7 +103,6 @@ Pada tabel `member_cards`:
 - last_name
 - email
 - phone_number
-- account_number
 - exp_month
 - exp_year
 - currency
@@ -113,7 +111,7 @@ Kemudian melakukan request kepada provider dan mendapatkan response untuk update
 - token_id
 - authentication_id
 - status
-- masked_account_number
+- account_number
 - payer_authentication_url
 
 Juga menyimpan request dan response-nya pada tabel `member_card_logs`.
