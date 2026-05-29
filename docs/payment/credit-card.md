@@ -86,7 +86,7 @@ Member diarahkan ke halaman sesuai dengan response pada `payer_authentication_ur
 
 ### Charge
 
-Member memilih kartu untuk melakukan transaksi.
+Member memilih kartu untuk melakukan transaksi. Adapun yang digunakan saat charging adalah object `token_id`. Object ini juga terenkripsi agar tidak bisa sembarang dibaca dan digunakan.
 
 ## Alur Data
 
