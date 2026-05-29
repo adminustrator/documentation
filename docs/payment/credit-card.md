@@ -48,7 +48,7 @@ Adapun data di atas akan disimpan pada tabel `member_cards` dengan detail sebaga
 | account_number         | string    | 20      | -       | _445653XXXXXX1096_ ***(masked)***          |
 | exp_month *            | tinyint   | 2       | -       | _01 s.d. 12_                               |
 | exp_year *             | year      | -       | -       | _2029_                                     |
-| currency *             | string    | 5       | -       | _IDR_                                      |
+| currency *             | char      | 3       | -       | _IDR_                                      |
 | payer_authentication_url | text      | -       | -       | _https://..._                              |
 | created_at             | timestamp | -       | -       | _2025-02-17 16:06:07.000_                  |
 | updated_at             | timestamp | -       | -       | _2025-02-17 16:06:07.000_                  |
