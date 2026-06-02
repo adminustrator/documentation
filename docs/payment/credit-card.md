@@ -84,6 +84,16 @@ Member melakukan pendaftaran kartu dengan detail yang tertulis pada [Pendaftaran
 
 Member diarahkan ke halaman sesuai dengan response pada `payer_authentication_url`.
 
+### Redirection
+
+Member akan diarahkan ke halaman **sukses** atau **gagal** terhadap proses autentikasinya.
+
+:::info
+
+Dibutuhkan dua halaman baru untuk mengakomodir kondisi ini.
+
+:::
+
 ### Charge
 
 Member memilih kartu untuk melakukan transaksi. Adapun yang digunakan saat charging adalah object `token_id`. Object ini juga terenkripsi agar tidak bisa sembarang dibaca dan digunakan.
