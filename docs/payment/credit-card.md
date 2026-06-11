@@ -164,7 +164,7 @@ Adapun request body-nya seperti ini:
 }
 ```
 
-Untuk `token_id` didapatkan dari object Kartu Kreditnya yang dijelaskan di bawah. Object `token_id` ini opsional.
+Untuk `token_id` didapatkan dari object Kartu Kreditnya yang dijelaskan di bawah. Object `token_id` ini __wajib__ disertakan jika menggunakan Kartu Kredit.
 
 Adapun cara mengatasinya seperti metode menggunakan Dana yang menggunakan url lagi untuk autentikasi transaksinya.
 
