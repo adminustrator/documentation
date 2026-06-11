@@ -125,3 +125,196 @@ Kemudian melakukan request kepada provider dan mendapatkan response untuk update
 - payer_authentication_url
 
 Juga menyimpan request dan response-nya pada tabel `member_card_logs`.
+
+## Alur OneSmile
+
+### IPL Swakelola
+
+Pada flow pembayaran IPL Swakelola, prosesnya tidak ada yang berubah, kecuali saat checkout. 
+
+Selain untuk pembayaran dengan Kartu Kredit, endpoint checkout adalah `[residence-service]/wallet-checkout`. 
+
+```bash
+# dev
+https://az-api-dev.onesmile.digital/residence-service/api/v2/wallet-checkout
+
+# prod
+https://aca-prd.az-api.onesmile.digital/residence-service/api/v2/wallet-checkout
+```
+
+Sedangkan untuk pembayaran menggunakan Kartu Kredit adalah `/payment-checkout` sebagaimana yang dipakai oleh servis Aktivitas (_Facility Booking_).
+
+```bash
+# dev
+https://az-api-dev.onesmile.digital/payment-xendit/api/v2/payment-checkout
+
+# prod
+https://aca-prd.az-api.onesmile.digital/payment-xendit/api/v2/payment-checkout
+```
+
+Mengapa demikian? Karena ini adalah salah satu upaya untuk penyeragaman servis pembayaran.
+
+Adapun request body-nya seperti ini:
+
+```json
+{
+  "token_id": "pt-xxx-xxx", // string
+  "order_id": 123,          // integer
+  "mp_id": 123              // integer
+}
+```
+
+Untuk `token_id` didapatkan dari object Kartu Kreditnya yang dijelaskan di bawah.
+
+Adapun cara mengatasinya seperti metode menggunakan Dana yang menggunakan url lagi untuk autentikasi transaksinya.
+
+## Object Kartu Kredit
+
+Seluruh endpoint di bawah sudah terdokumentasi di Bruno, pada folder `Payment`, lalu subfolder `Credit Card`.
+
+### Base URL
+
+```bash
+# dev
+https://az-api-dev.onesmile.digital/payment-xendit/api/v2
+
+# prod
+https://aca-prd.az-api.onesmile.digital/payment-xendit/api/v2
+```
+
+### Registrasi Kartu
+
+Endpoint
+
+```
+POST /cards
+```
+
+Request Body
+
+```json
+{
+  "name": "John Doe",
+  "email": "johndoe@gmai.com",
+  "phone_number": "6285694859455",
+  "account_number": "4000000000001000",
+  "expiry": "12/29", // atau "12/2029"
+  "cvv": "123",
+  "success_to": "deeplink",
+  "failure_to": "deeplink"
+}
+```
+
+Response
+
+```json
+{
+  "success": true,
+  "msg": "Success",
+  "data": {
+    "type": "REDIRECT_CUSTOMER",
+    "descriptor": "WEB_URL",
+    "value": "https://redirect.xendit.co/authentications/6a1e9970b9300363ff2a8d1a/render?api_key=xnd_public_development_y51jVUKfSm06FKTguf9MBdZF0Me0bf2cxu3eUrfV5bbl9dBv0Xt46qYYSLeSBbE"
+  }
+}
+```
+
+Alternatif response lainnya terdokumentasi di Bruno.
+
+Setelah melakukan autentikasi terhadap link yang diberikan, selanjutnya akan dikembalikan ke object `_to` sesuai dengan hasilnya.
+
+### Listing Kartu
+
+Endpoint
+
+```
+GET /cards
+```
+
+Response
+
+```json
+{
+  "success": true,
+  "msg": "Success",
+  "data": [
+    {
+      "id": "11",
+      "account_number": "400000XXXXXX2503",
+      "first_name": "John",
+      "last_name": "Doe",
+      "brand": "VISA",
+      "exp_month": 12,
+      "exp_year": 2029,
+      "token_id": "pt-430257a7-ece8-856a-a7b5-f191af161e41"
+    }
+  ],
+  "meta": {
+    "page_title": "Kartu Kredit",
+    "empty_state": null
+  }
+}
+```
+
+Empty State
+
+```json
+{
+  "success": true,
+  "msg": "Success",
+  "data": [],
+  "meta": {
+    "page_title": "Kartu Kredit",
+    "empty_state": {
+      "title": {
+        "text": "Belum ada Kartu",
+        "color": "#000000"
+      },
+      "subtitle": {
+        "text": "Ayo tambahkan kartu kredit Anda",
+        "color": "#000000"
+      },
+      "note": {
+        "text": null,
+        "color": null
+      },
+      "button": {
+        "background_color": null,
+        "border_color": "#F94E39",
+        "caption": {
+          "text": "Tambah Kartu Baru",
+          "color": "#F94E39"
+        }
+      }
+    }
+  }
+}
+```
+
+### Hapus Kartu
+
+Endpoint
+
+```
+DELETE /cards/:card_id
+```
+
+Response
+
+```json
+{
+  "success": true,
+  "msg": "Success",
+  "data": [
+    {
+      "id": "11",
+      "account_number": "400000XXXXXX2503",
+      "first_name": "John",
+      "last_name": "Doe",
+      "brand": "VISA",
+      "exp_month": 12,
+      "exp_year": 2029
+    }
+  ]
+}
+```
