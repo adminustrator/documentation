@@ -1,0 +1,8 @@
+{
+  "label": "Customer Care – Perizinan",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Dokumentasi teknis revamp Customer Care 'Document Permit' (perizinan): eligibility gate, terms & conditions, DB-driven service catalog dengan rule engine, dan server-driven form wizard."
+  }
+}
