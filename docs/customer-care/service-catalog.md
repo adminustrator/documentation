@@ -22,7 +22,16 @@ custcare_service_category
 ```
 
 Source: `services/v1/customer_care/cc_catalog.service.js` and
-`services/v1/customer_care/cc_validation.evaluator.js`.
+`services/v1/customer_care/cc_validation.evaluator.js`. Wiring:
+`controllers/v1/customer_care/cc_catalog.controller.js` (`GetServiceCategories`,
+`GetGroupedSubServices`) via `routes/v1/customer_care/cc_catalog.route.js`.
+
+:::note Route move
+These two endpoints used to sit under the `/document-request/*` prefix. They were pulled out
+of `permintaan_izin` into the dedicated catalog module and now mount at the **top level**
+(`/get-service-category`, `/get-sub-service-grouped`) under both `/api/v1` and `/api/v2`. The
+old thin wrapper `getGroupedSubServiceAppointment` in `permintaan_izin.service.js` was removed.
+:::
 
 :::note Image URLs
 `image_url` values are resolved through `buildImageUrl(filename)`: a value already starting
@@ -30,10 +39,10 @@ with `http` is returned as-is; otherwise it is prefixed to `${ASSETS_URL}/img/cc
 `null`/empty stays `null`.
 :::
 
-## `POST /document-request/get-service-category`
+## `POST /get-service-category`
 
 Returns the active categories, each with its nested active services. Used to render the
-top-level perizinan menu.
+top-level perizinan menu. Source: `getServiceCategories` in `cc_catalog.service.js`.
 
 ### Request
 
@@ -82,14 +91,14 @@ top-level perizinan menu.
 `CcServiceCategory.findActive()` (ordered by `sort_order`); services from
 `CcService.findByCategory(categoryId)`.
 
-## `POST /document-request/get-sub-service-grouped`
+## `POST /get-sub-service-grouped`
 
 Returns the **groups** and **items** under one service, with each item already evaluated by
 the rule engine so the client knows whether it is selectable.
 
-Source: `getGroupedSubServices` in `cc_catalog.service.js`. (The legacy
-`permintaan_izin.service.js` exposes a thin wrapper `getGroupedSubServiceAppointment` that
-delegates here.)
+Source: `getGroupedSubServices` in `cc_catalog.service.js`, called through
+`getGroupedSubServicesSafe` (a defensive wrapper that logs and swallows engine errors so a
+rule-evaluation failure never 500s the menu).
 
 ### Request
 
@@ -137,6 +146,7 @@ delegates here.)
             "show": true,
             "disabled_reason": null,
             "flow_type": "NEW",
+            "need_tnc": true,
             "sort_order": 0
           }
         ]
@@ -149,6 +159,21 @@ delegates here.)
 Per item, `is_active` is the **rule-engine result** (`enabled`), and `disabled_reason`
 explains why an item is greyed out when `is_active` is `false`. `flow_type` (default `NEW`)
 tells the client which downstream flow to launch.
+
+`need_tnc` (commit `28bc523`) is `true` when the item's own `code` matches an active
+`terms_and_conditions.service_code` row scoped to `client_type = DOCUMENT_PERMISSION`. It lets the
+client know **upfront** whether a Terms & Conditions step is required before starting the form,
+without a separate probe call. The flag is resolved by `resolveNeedTncByItemId`, which batches the
+lookup across the whole item set (one `Op.in` query) to avoid N+1 queries during assembly.
+
+:::note `items[].code` is the form key
+When the member picks an enabled item, the client passes that item's `code` as the `form_code`
+to [`/perizinan/form/start`](./form-wizard.md#post-perizinanformstart). The engine resolves the
+item's `code` → form via `custcare_form.service_item_id` (`resolveFormByCode`, migration 028),
+so the client-facing catalog code is decoupled from the form's own internal `code`. E.g. the
+renovasi permit item `PENGAJUAN_IZIN_RENOVASI` and the extension item
+`PERPANJANGAN_IZIN_RENOVASI` (whose form's internal code stays `PERPANJANGAN_RENOVASI`).
+:::
 
 Performance note: item rules are batch-loaded for all items in one query via
 `CcServiceItemRule.findRulesForItems(itemIds)` (a join to `custcare_validation_rule`),
