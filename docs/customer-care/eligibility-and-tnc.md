@@ -14,12 +14,14 @@ description: check-eligibility gate and DB-driven terms & conditions
 This page covers the two gates a member passes before filling in a permit form: the
 **eligibility check** and the **terms & conditions** lookup.
 
-## `POST /document-request/check-eligibility`
+## `POST /perizinan/check-eligibility`
 
 Decides whether a member may proceed with a permit request, based on their **IPL**
 (Iuran Pengelolaan Lingkungan) activation status and outstanding bill (`tunggakan`).
 
-Source: `actionCheckEligibility` in `services/v1/permintaan_izin.service.js`.
+Controller: `ActionCheckEligibility` in `controllers/v1/perizinan/perizinan.controller.js`.
+Source: `actionCheckEligibility` in `services/v1/perizinan/perizinan.service.js` — it reuses
+`fetchOutstandingGeneral` (imported from `permintaan_izin.service.js`) for the bill lookup.
 
 ### Request
 
@@ -122,17 +124,19 @@ is reserved for hard errors (bad params, member not found, realbit failure).
 
 ---
 
-## `POST /document-request/get-terms-and-conditions`
+## `POST /perizinan/get-terms-and-conditions`
 
 Returns the active terms & conditions for a service. It first looks for a
 **service-specific** record, then falls back to a **global** one (`service_code = null`).
 
+Controller: `ActionGetTermsAndConditions` in `controllers/v1/perizinan/perizinan.controller.js`.
 Source: `actionGetTermsAndConditions` in `services/v1/shared.service.js`.
 
 :::note Refactor history
-The handler originally lived in `permintaan_izin.service.js` (commit `b64678d`) and was
-later extracted into the shared `shared.service.js` (commit `79d7da9`) so other domains can
-reuse it. The shared version also enforces the `x-auth-token` / member check.
+The handler originally lived in `permintaan_izin.service.js` (commit `b64678d`), was
+extracted into the shared `shared.service.js` (commit `79d7da9`) so other domains can reuse
+it, and its route was later moved off the `/document-request` prefix into the dedicated
+`/perizinan` domain. The shared version also enforces the `x-auth-token` / member check.
 :::
 
 ### Request
@@ -140,7 +144,8 @@ reuse it. The shared version also enforces the `x-auth-token` / member check.
 | Where | Field | Required | Default | Notes |
 | ----- | ----- | -------- | ------- | ----- |
 | Header | `x-auth-token` | yes | — | Member auth key. |
-| Body | `service_code` | no | — | When set, the lookup prefers the matching service-specific T&C. |
+| Body | `service_code` | no | — | When set, the lookup prefers the matching service-specific T&C. Wins over `service_item_code`. |
+| Body | `service_item_code` | no | — | The catalog **item** code (`items[].code` from `/get-sub-service-grouped`). When supplied **without** an explicit `service_code`, the service derives `service_code` from the item's form (see below). |
 | Body | `client_type` | no | `DOCUMENT_PERMISSION` | Scopes the lookup. |
 
 ```json
@@ -150,11 +155,32 @@ reuse it. The shared version also enforces the `x-auth-token` / member check.
 }
 ```
 
+```json
+{
+  "service_item_code": "PENGAJUAN_IZIN_RENOVASI",
+  "client_type": "DOCUMENT_PERMISSION"
+}
+```
+
 ### Lookup order
 
-1. If `service_code` is provided: `TermsAndConditions.findOne({ client_type, service_code, is_active: true })`.
-2. Fallback: `TermsAndConditions.findOne({ client_type, service_code: null, is_active: true })`.
-3. None found → `{ success: false, msg: 'Terms and conditions not found', data: {} }`.
+1. **`service_item_code` resolution** (commit `55816d0`): when `service_item_code` is given and no
+   explicit `service_code`, the perizinan service resolves the item's form via `resolveFormByCode`
+   (the same form-resolution used by `form/start`) and derives `service_code` from the form's
+   `legacy_service_code` (e.g. the renovasi item → form → `'renovasi'`). It then defers to the shared
+   lookup with that derived `service_code`. An explicit `service_code` always wins, so the legacy
+   `agreement_link` flow is unaffected.
+2. If `service_code` is provided (or was derived above): `TermsAndConditions.findOne({ client_type, service_code, is_active: true })`.
+3. Fallback: `TermsAndConditions.findOne({ client_type, service_code: null, is_active: true })`.
+4. None found → `{ success: false, msg: 'Terms and conditions not found', data: {} }`.
+
+:::note Ownership moved
+The `service_item_code`-aware wrapper `actionGetTermsAndConditions` now lives in
+`services/v1/perizinan/perizinan.service.js` (delegating to `services/v1/shared.service.js` for the
+generic `(client_type, service_code)` lookup). The derivation reads `legacy_service_code` from the
+**form**, not from `custcare_service` — the T&C rows are keyed by the form's code (`'renovasi'`),
+whereas the parent service's `legacy_service_code` is `'izinkerja'`.
+:::
 
 ### Response
 
