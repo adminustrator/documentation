@@ -121,6 +121,32 @@ Kota biasa **tidak** memerlukan override — `ResolveProjectName` cukup mengemba
 menjadi beberapa proyek berdasarkan awalan IPL). Itu juga perlu konstanta city-id baru serupa
 `bsdMemberCityID`.
 
+Contoh menambah override untuk memecah kota `Surabaya` menjadi proyek terpisah
+`SBY_TIMUR` bila IPL diawali `"9"` (pola sama dengan override ZORA yang sudah ada):
+
+```go
+const bsdMemberCityID = "05382d21-d1a7-4edf-88f4-d864259848ec"
+const surabayaMemberCityID = "<uuid-kota-surabaya>" // ganti dengan city_id sebenarnya
+
+func ResolveProjectName(memberCityID string, memberCityName string, memberIpl string) string {
+	if memberCityID == bsdMemberCityID && strings.HasPrefix(strings.TrimSpace(memberIpl), "1") {
+		return "ZORA"
+	}
+
+	// Override baru: pisahkan Surabaya menjadi proyek SBY_TIMUR untuk IPL awalan "9"
+	if memberCityID == surabayaMemberCityID && strings.HasPrefix(strings.TrimSpace(memberIpl), "9") {
+		return "SBY_TIMUR"
+	}
+
+	return memberCityName
+}
+```
+
+Bila proyek hasil override (`SBY_TIMUR`) butuh bank code / URL / x-api-key sendiri, tambahkan
+juga entrinya ke map di Langkah 2 dan env var-nya di Langkah 3, persis seperti proyek biasa —
+override hanya menentukan **nama proyek**, sedangkan map+env tetap yang menentukan nilai
+routing-nya.
+
 ### 5. Tidak perlu ubah layer lain
 
 `bill.go`, `payment.go`, `statistic.go`, `realbit.go`, dan repository sudah _project-agnostic_ —
