@@ -22,8 +22,6 @@ Ada beberapa hal yang diisi oleh customer saat menginput data kartunya, antara l
 | Tahun kedaluwarsa | wajib | _2026_              |
 | Nama depan        | wajib | _John_              |
 | Nama belakang     | wajib | _Doe_               |
-| Email             | wajib | _johndoe@gmail.com_ |
-| Nomor handphone   | wajib | _628xxxx_           |
 | CVV               | wajib | _3 s.d. 4 digit_    |
 
 ## Struktur Data
