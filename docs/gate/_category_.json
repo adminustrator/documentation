@@ -1,0 +1,8 @@
+{
+  "label": "Gate & Scan",
+  "position": 11,
+  "link": {
+    "type": "generated-index",
+    "description": "Bagaimana satu QR (atau wajah) berubah menjadi gate yang terbuka — dan apa arti setiap penolakan yang muncul di layar gate."
+  }
+}

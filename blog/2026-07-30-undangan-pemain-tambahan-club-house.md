@@ -108,6 +108,22 @@ hanya ditambah penanda pemain mana yang memakainya. Di sisi gate, sesi lalu
 dihitung per pemain: satu pemain masuk tidak menghalangi pemain lain di booking
 yang sama.
 
+:::note[Pembatas laju di gate]
+
+Alur gate punya pembatas **5 detik** antar-scan — disamakan dengan jalur
+aktivitas. Scan yang lebih rapat dari itu dianggap perangkat gate yang mengulang,
+bukan orang yang benar-benar menempelkan QR dua kali, dan ditolak dengan
+*Terlalu cepat, tunggu beberapa detik.*
+[\[Code: 9014\]](/docs/gate/kode-error-scan#kode-club-house-90xx)
+
+Pembatasnya ikut dihitung **per pemain**: satu pemain yang QR-nya terbaca dua
+kali tidak menahan pemain berikutnya di booking yang sama. Penolakan ini juga
+sengaja tidak mengirim push notif ke member — satu burst retry perangkat gate
+akan mengirim beberapa notifikasi "gagal scan" sekaligus untuk kejadian yang
+bahkan tidak dilakukan member.
+
+:::
+
 ### Kapan QR-nya muncul
 
 QR tidak selalu tampil. Jendelanya **30 menit sebelum sampai 60 menit setelah jam
@@ -188,18 +204,6 @@ hal di sekitarnya sudah diidentifikasi dan menunggu keputusan lanjutan.
 - **Kedatangan tamu tanpa pemesan** saat ini tidak dibedakan: tamu bisa masuk
   selama QR-nya valid dan berada di jendela waktunya. Apakah perlu dibedakan lebih
   merupakan pertanyaan kebijakan operasional daripada teknis.
-
-:::note[Pembatas laju di gate]
-
-Alur gate dirancang punya pembatas 10 detik antar-scan. Pembatas itu belum aktif
-sebagaimana diniatkan — kondisi yang sudah ada sejak sebelum fitur pemain tambahan
-dibuat, dan berlaku sama untuk QR pemesan.
-
-Penyesuaiannya sudah disiapkan dan berukuran kecil, tapi ditahan lebih dulu:
-mengaktifkan pembatas pada alur gate yang sudah berjalan di produksi adalah
-perubahan perilaku, jadi sebaiknya lewat persetujuan.
-
-:::
 
 ## Ringkasnya
 
