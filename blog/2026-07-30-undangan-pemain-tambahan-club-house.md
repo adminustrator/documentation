@@ -21,10 +21,10 @@ sama. Undangan pemain tambahan adalah jawaban untuk keduanya.
 
 Sebelum bicara undangan, ini dulu asal-usul daftar pemainnya.
 
-Pemesan menambahkan layanan "Tambah Residen" atau "Tambah Tamu" pada bookingnya.
+Pemesan menambahkan layanan "Residen" atau "Tamu" pada bookingnya.
 Begitu order dibuat, sistem langsung menyiapkan **baris kosong sebanyak jumlah
-yang dipesan** — masih bernama sementara seperti *Tambah Residen 1* dan
-*Tambah Tamu 1*, belum ada nomor handphonenya.
+yang dipesan** — masih bernama sementara seperti *Residen 1* dan
+*Tamu 1*, belum ada nomor handphonenya.
 
 Pemesan lalu mengisi nama dan nomor handphone tiap pemain, satu per satu. Setelah
 lengkap, ia menekan **konfirmasi**. Sejak itu daftar pemain terkunci dan tidak
@@ -44,7 +44,7 @@ terkunci hanya selama tidak ada tambahan baru.
 :::
 
 Satu hal yang perlu diperhatikan saat mengisi: nama sementara hasil sistem
-(*Tambah Residen 1*) **dianggap sudah terisi** karena memang tidak kosong. Jadi
+(*Residen 1*) **dianggap sudah terisi** karena memang tidak kosong. Jadi
 yang biasanya menahan konfirmasi adalah nomor handphone yang belum diisi — bukan
 namanya. Kalau konfirmasi ditolak dengan pesan *lengkapi nama & nomor handphone
 `{n}` pemain tambahan*, hampir selalu nomornya yang kurang.
